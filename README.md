@@ -12,6 +12,11 @@ Please follow the guide.
 
 ### Option 1: Local
 
+Make sure you have [Mongo](https://docs.mongodb.com/manual/installation/) and [Node](https://nodejs.org/en/download/) installed on you machine.
+
+1. `make sure xero db is created in mongoDB`
+
+
 run following command in terminal / power shell
 
 ```
@@ -25,8 +30,6 @@ npm start
 
 Make sure you have [docker](https://docs.docker.com/install/) and [docker-compose](https://docs.docker.com/compose/install/) installed on you machine.
 
-1. `create a .env file copy content from .env.docker and do not make any change`
-2. `docker-compose up`
 
 run following command in terminal / power shell
 
