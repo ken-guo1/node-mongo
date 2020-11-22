@@ -6,11 +6,11 @@ Please follow the guide.
 
 ## Prerequisite
 
-1. Make sure you have docker installed if the app is running in docker.
+1. Make sure you have docker and docker-compose installed if the app is running in docker.
 2. Make sure you have latest stable version of node installed if the app is running in the local.
 3. Make sure you have mongo installed if the app is running in the local.
 
-### Option 1 Local
+### Option 1: Local
 
 run following command in terminal / power shell
 
@@ -19,7 +19,7 @@ npm install
 npm start
 ```
 
-### Option 2 Docker
+### Option 2: Docker
 
 ## Prerequisite
 
@@ -34,45 +34,30 @@ run following command in terminal / power shell
 docker-compose up -d
 ```
 
-when docker will finish building the containers, access the "laravel-react-app" container using following command
+When containers are up, there should be an empty db in Mongo container called xero. Please created necessary documents over the api endpoints.
 
-`docker exec -it laravel_react_app sh`
 
-now you will be inside container
+### Links
 
-run following commands
+For app running in Docker: open browser/postman and check the following address 
 
-1. `composer install && composer update`
-2. `php artisan cron:refresh-database`
-3. `php artisan key:gen`
-4. `npm install && npm run dev`
+`http://localhost:8000/api/products`
 
-open browser and check the following address
+For app running in Local: open browser/postman and check the following address 
 
-`http://localhost:8100`
+`http://localhost:8080/api/products`
 
-### Page Links:
+### Endpoints:
 
-`http://localhost:8100/login`
+1. `GET /products` - gets all products.
+2. `GET /products?name={name}` - finds all products matching the specified name.
+3. `GET /products/{id}` - gets the project that matches the specified ID - ID is a GUID.
+4. `POST /products` - creates a new product.
+5. `PUT /products/{id}` - updates a product.
+6. `DELETE /products/{id}` - deletes a product and its options.
+7. `GET /products/{id}/options` - finds all options for a specified product.
+8. `GET /products/{id}/options/{optionId}` - finds the specified product option for the specified product.
+9. `POST /products/{id}/options` - adds a new product option to the specified product.
+10. `PUT /products/{id}/options/{optionId}` - updates the specified product option.
+11. `DELETE /products/{id}/options/{optionId}` - deletes the specified product option.
 
-`http://localhost:8100/names/citizen`
-
-`http://localhost:8100/names/offical`
-
-### API endpoints:
-
-Login:
-
-POST `http://localhost:8100/api/v1/auth/login`
-
-TODO/Improvement:
-
-- [ ] Add openAPI spec
-- [ ] request case insensitive
-- [ ] backend role permission middleware
-- [ ] Hook to AWS
-- [ ] Decouple Docker: React and Laravel
-- [ ] Front End Redirect user to common page if user is not offical
-- [ ] prevent multiple clicking
-- [ ] API excpetion handling centralisation `https://stackoverflow.com/questions/51065170/laravel-api-how-to-properly-handle-errors`
-- [ ] Tests
