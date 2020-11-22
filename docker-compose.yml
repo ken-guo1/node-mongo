@@ -1,0 +1,24 @@
+version: "3"
+services:
+  web:
+    container_name: server
+    build: ./server
+    ports:
+      - "8000:8080"
+    depends_on:
+      - mongo
+    networks:
+      - xero_network
+  mongo:
+    container_name: mongo
+    build: ./mongo
+    environment:
+      - MONGO_INITDB_DATABASE=xero
+    ports:
+      - "27017:27017"
+    networks:
+      - xero_network
+
+networks:
+  xero_network:
+    driver: bridge
