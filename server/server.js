@@ -15,7 +15,7 @@ const app = express();
 
 // db
 mongoose
-  .connect(process.env.MONGO_URL, {
+  .connect(process.env.MONGO_CLOUD_URL, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
