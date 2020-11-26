@@ -14,11 +14,8 @@ const app = express();
 
 
 // db
-var mongoLink = process.env.MONGO_URL
-if(!process.env.MONGOPASS){
-  mongoLink = "mongodb+srv://xero:" + process.env.MONGOPASS + "@cluster0.sq1pu.mongodb.net/xero?retryWrites=true&w=majority";
+const mongoLink = "mongodb+srv://xero:" + process.env.MONGOPASS + "@cluster0.sq1pu.mongodb.net/xero?retryWrites=true&w=majority";
 
-}
 
 
 mongoose
