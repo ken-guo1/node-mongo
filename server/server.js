@@ -14,8 +14,15 @@ const app = express();
 
 
 // db
+var mongoLink = process.env.MONGO_URL
+if(!process.env.MONGOPASS){
+  mongoLink = "mongodb+srv://xero:" + process.env.MONGOPASS + "@cluster0.sq1pu.mongodb.net/xero?retryWrites=true&w=majority";
+
+}
+
+
 mongoose
-  .connect(process.env.MONGO_CLOUD_URL, {
+  .connect(mongoLink, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
@@ -29,10 +36,7 @@ mongoose
 // middlewares
 app.use(morgan("dev"));
 app.use(bodyParser.json());
-// cors
-if (process.env.NODE_ENV === "development") {
-  app.use(cors({ origin: `${process.env.CLIENT_URL}` }));
-}
+
 // routes middleware
  app.use("/api", productRoutes);
  app.use("/api", optionRoutes);
