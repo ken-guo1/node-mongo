@@ -25,10 +25,10 @@ exports.create = async (req, res) => {
 
 };
 exports.read = async (req, res) => {
-    const {optionId} = req.params;
+    const {optionId,id } = req.params;
     
     try {
-        const option=  await ProductOption.findOne({id:optionId}).select('-_id -__v -productId').exec();
+        const option=  await ProductOption.findOne({id:optionId,productId:id}).select('-_id -__v -productId').exec();
         
         if(!option){
             return res.sendStatus(404);
@@ -64,9 +64,9 @@ exports.list = async (req, res) => {
     }
 };
 exports.remove = async (req, res) => {
-    const {optionId} = req.params;
+    const {optionId,id} = req.params;
     try {
-        const option=  await ProductOption.findOneAndRemove({id:optionId}).exec();
+        const option=  await ProductOption.findOneAndRemove({id:optionId,productId:id}).exec();
         
         if(!option){
             return res.sendStatus(404);
@@ -82,10 +82,10 @@ exports.remove = async (req, res) => {
 };
 
 exports.update = async (req, res) => {
-    const {optionId} = req.params;
+    const {optionId,id} = req.params;
     const { name,description} = req.body;
 
-    const filter = { id: optionId };
+    const filter = { id: optionId,productId:id };
     const update = { name:name,description:description};
     for (var prop in update) { 
         if (!update[prop]) { 
