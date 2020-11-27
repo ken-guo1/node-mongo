@@ -20,11 +20,11 @@ exports.read = async(req, res) => {
     const {id }= req.params;
 
     try{
-        let data =  await Product.findOne({id}).exec();
-        if(!data){
+        let product =  await Product.findOne({id}).exec();
+        if(!product){
             res.sendStatus(404);
         }
-        res.json(data.publicFields());
+        res.json(product.publicFields());
     }catch(error){
         return res.status(400).json(error.message);    
     }
@@ -51,9 +51,16 @@ exports.remove = async (req, res) => {
     try{
         await ProductOption.deleteMany({productId:id}).exec();
         
-        await Product.findOneAndRemove({ id:id }).exec();
+        let product = await Product.findOneAndRemove({ id:id }).exec();
+
+
+        if(!product){
+            res.sendStatus(404);
+        } else{
+            res.sendStatus(200);
+        }
         
-        res.sendStatus(200);
+        
     } catch(error){
         return res.status(400).json(error.message);    
     }
@@ -63,12 +70,22 @@ exports.update = async (req, res) => {
     const {id} = req.params;
     const { name,description,price,deliveryPrice } = req.body;
 
+
     const filter = { id: id };
     const update = { name:name,description:description,price:price, deliveryPrice:deliveryPrice};
 
-    try{
-        await Product.findOneAndUpdate(filter,update).exec();
+    for (var prop in update) { 
+        if (!update[prop]) { 
+            delete update[prop]; 
+        } 
+    } 
 
+    try{
+        let product = await Product.findOneAndUpdate(filter,update).exec();
+
+        if(!product){
+            res.sendStatus(404);
+        }
         res.sendStatus(201);  
 
     } catch(error){
