@@ -12,13 +12,10 @@ const app = express();
 
 
 // db
-if(process.env.NODE_ENV === "development"){
-  var mongoLink = process.env.MONGO_URL;
 
-}else{
-  var mongoLink = "mongodb+srv://xero:" + process.env.MONGOPASS + "@cluster0.sq1pu.mongodb.net/xero?retryWrites=true&w=majority";
+var mongoLink = process.env.MONGO_URL;
 
-}
+
 
 
 if (process.env.NODE_ENV === 'test') {

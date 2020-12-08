@@ -14,7 +14,7 @@ Please follow the guide.
 
 Make sure you have [Mongo](https://docs.mongodb.com/manual/installation/) and [Node](https://nodejs.org/en/download/) installed on you machine.
 
-1. `make sure xero db is created in mongoDB`
+1. `make sure db is created in mongoDB`
 
 
 run following command in terminal / power shell
@@ -37,7 +37,7 @@ run following command in terminal / power shell
 docker-compose up -d
 ```
 
-When containers are up, there should be an empty db in Mongo container called xero. Please created necessary documents over the api endpoints.
+When containers are up, there should be an empty db in Mongo container called example. Please created necessary documents over the api endpoints.
 
 
 ### Links

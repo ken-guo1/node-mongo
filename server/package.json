@@ -1,7 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "Xero RefactorThis Rebuild",
+  "description": "node.js web api boilerplate",
   "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js",
