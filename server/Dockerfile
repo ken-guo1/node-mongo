@@ -4,12 +4,11 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 
-ENV MONGO_URL=mongodb://mongo:27017/xero
+ENV MONGO_URL=mongodb://mongo:27017/example
+
 
 RUN npm install
 
 COPY . .
-
-EXPOSE 8080
 
 CMD [ "npm", "start"]

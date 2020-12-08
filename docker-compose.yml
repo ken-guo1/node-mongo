@@ -8,17 +8,17 @@ services:
     depends_on:
       - mongo
     networks:
-      - xero_network
+      - node_network
   mongo:
     container_name: mongo
     build: ./mongo
     environment:
-      - MONGO_INITDB_DATABASE=xero
+      - MONGO_INITDB_DATABASE=example
     ports:
       - "27017:27017"
     networks:
-      - xero_network
+      - node_network
 
 networks:
-  xero_network:
+  node_network:
     driver: bridge
